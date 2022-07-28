@@ -3,10 +3,11 @@ import java.util.Scanner;
 
 public class Supermarket {
     public static void main(String[] args) {
+
         System.out.println("준성마켓 온 것을 환영합니다~~!");
         Scanner scanner = new Scanner(System.in);
         Goods[] goodsArr = new Goods[5];
-        int index = 0;
+       // int index = 0;
         boolean onOff = true;
 
         for(int n = 0; n<goodsArr.length; n++) {
@@ -28,14 +29,15 @@ public class Supermarket {
                         System.out.print("가격을 입력해주세요.>> ");
                         int price = scanner.nextInt();
                         if(pDate.equals("0")){
-                            goodsArr[index%5]=new Goods(index,name,price);
+                            goodsArr[Goods.index%5]=new Goods(Goods.index,name,price);
                         }
                         else {
                             System.out.print("할인율을 입력해주세요.>> ");
                             float discount = scanner.nextFloat();
-                            goodsArr[index%5]=new Goods(index,name,pDate,price,discount);
+                            goodsArr[Goods.index%5]=new Goods(Goods.index,name,pDate,price,discount);
                         }
-                        index++;
+                        Goods.index++;
+                        System.gc();
                         break;
                     case 2:
                         System.out.println("----------------------------------------------------------------------");
@@ -46,7 +48,7 @@ public class Supermarket {
                     case 3:
                         System.out.print("상품번호를 입력해주세요.>> ");
                         int i = scanner.nextInt();
-                        System.out.println(goodsArr[i].name + "의 가격은 " + goodsArr[i].discountedPrice() + "원입니다.");
+                        System.out.println(goodsArr[i].getName() + "의 가격은 " + goodsArr[i].discountedPrice() + "원입니다.");
                         break;
                     case 4:
                         System.out.println("이용해주셔서 감사합니다.");
@@ -57,5 +59,16 @@ public class Supermarket {
                 scanner.next();
             }
         }
+        scanner.close();
+        System.gc();
+
+        /*
+        test a=new test();
+        test b=new test();
+        a.n=0;
+        b.n=10;
+
+        int sum=Calculator.increase(a, b);
+        System.out.println(a.n+", "+sum);*/
     }
 }
